@@ -17,7 +17,7 @@ const HamburgerMenu = () => {
                 ☰
             </button>
             <div className="menu-items">
-                {/* Use Link for navigation */}
+
                 <Link to="/">Home</Link>
                 <Link to="/ProductsPage">Products</Link>
                 <Link to="/Cart">Cart</Link>

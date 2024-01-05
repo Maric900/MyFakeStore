@@ -5,6 +5,8 @@ import ProductsPage from './components/ProductsPage';
 import Cart from './components/Cart';
 import HamburgerMenu from './HamburgerMenu';
 import { CartProvider } from './components/CartContext'; // Import CartProvider
+import Layout from './components/Layout'
+import Footer from './components/Footer';
 
 const App = () => {
   return (
@@ -13,10 +15,13 @@ const App = () => {
 
         <HamburgerMenu />
         <Routes>
+          <Route path="/" element={<Layout />} />
           <Route path="/ProductsPage" element={<ProductsPage />} />
           <Route path="/Cart" element={<Cart />} />
         </Routes>
       </CartProvider>
+
+      <Footer />
     </Router>
   );
 };
