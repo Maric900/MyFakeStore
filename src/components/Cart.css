@@ -1,0 +1,14 @@
+h2 {
+    color: #333;
+    /* Set the color for the heading */
+}
+
+ul {
+    list-style: none;
+    /* Remove default list styles */
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}

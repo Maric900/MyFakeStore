@@ -1,41 +1,40 @@
 // ProductsPage.js
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Layout from './Layout';
-
-import './ProductsPage.css';
+import "./ProductsPage.css";
+import { useCart } from './CartContext'; // Import useCart
 
 const ProductsPage = () => {
     const [products, setProducts] = useState([]);
+    const { addToCart } = useCart(); // Use the addToCart function from CartContext
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('https://fakestoreapi.com/products');
-                setProducts(response.data);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
-
-        fetchData();
+        // Fetch products from the API
+        axios.get('https://fakestoreapi.com/products')
+            .then(response => setProducts(response.data))
+            .catch(error => console.error('Error fetching products:', error));
     }, []);
 
+    const handleAddToCart = (product) => {
+        addToCart(product);
+    };
+
     return (
-
-        <div className="products-page">
-            <h2>All products:</h2>
-
-            {products.map((product) => (
-                <a key={product.id}>
-                    <p>{product.title}</p>
-                    <img src={product.image} alt={product.title} />
-                </a>
-            ))}
-
+        <div>
+            <h2>Products Page</h2>
+            <div className="product-list">
+                {products.map(product => (
+                    <div key={product.id} className="product-card">
+                        <h3>{product.title}</h3>
+                        <p>${product.price}</p>
+                        <img src={product.image} alt={product.title} />
+                        <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
+                    </div>
+                ))}
+            </div>
         </div>
-
     );
 };
 
 export default ProductsPage;
+

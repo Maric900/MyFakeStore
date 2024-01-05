@@ -2,23 +2,24 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import ProductsPage from './components/ProductsPage';
-import Layout from './components/Layout';
-import "./App.css"
+import Cart from './components/Cart';
 import HamburgerMenu from './HamburgerMenu';
+import { CartProvider } from './components/CartContext'; // Import CartProvider
 
-function App() {
+const App = () => {
   return (
     <Router>
-      <Layout></Layout>
-      <HamburgerMenu></HamburgerMenu>
+      <CartProvider>
 
-      <Routes>
-        <Route path="/ProductsPage" element={<ProductsPage />} />
-      </Routes>
-
+        <HamburgerMenu />
+        <Routes>
+          <Route path="/ProductsPage" element={<ProductsPage />} />
+          <Route path="/Cart" element={<Cart />} />
+        </Routes>
+      </CartProvider>
     </Router>
   );
-}
+};
 
 export default App;
 

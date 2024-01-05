@@ -1,8 +1,8 @@
 // HamburgerMenu.js
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import './HamburgerMenu.css';
-
 
 const HamburgerMenu = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -17,14 +17,15 @@ const HamburgerMenu = () => {
                 ☰
             </button>
             <div className="menu-items">
-                {/* Add your menu items here */}
-                <a href="/">Home</a>
-                <a href="/ProductsPage">Products</a>
-                <a href="/men">Men</a>
-                <a href="/women">Women</a>
+                {/* Use Link for navigation */}
+                <Link to="/">Home</Link>
+                <Link to="/ProductsPage">Products</Link>
+                <Link to="/Cart">Cart</Link>
+                <Link to="/Help">Help</Link>
             </div>
         </div>
     );
 };
 
 export default HamburgerMenu;
+
