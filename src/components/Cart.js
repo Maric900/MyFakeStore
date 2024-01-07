@@ -1,4 +1,3 @@
-// Cart.js
 import React from 'react';
 import { useCart } from './CartContext'; // Import useCart
 
