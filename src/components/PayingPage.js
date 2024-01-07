@@ -138,10 +138,6 @@ const PayingPage = () => {
             // Mark payment as submitted
             setPaymentSubmitted(true);
 
-            // Temporary success message display for 3 seconds
-            setTimeout(() => {
-                setPaymentSubmitted(false);
-            }, 3000);
         }
     };
 

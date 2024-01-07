@@ -5,13 +5,16 @@ import { useCart } from './CartContext';
 
 const Cart = () => {
     const navigate = useNavigate();
-    const { cart, resetCart } = useCart(); // Assuming you have a resetCart function
+    const { cart, resetCart } = useCart();
 
     const totalPrice = cart.reduce((total, item) => total + item.price, 0);
 
     const handlePay = () => {
         // Navigate to the PayingPage
         navigate('/PayingPage', { state: { cart, totalAmount: totalPrice.toFixed(2) } });
+
+        // Reset the cart after payment
+        resetCart();
     };
 
     return (
@@ -25,13 +28,9 @@ const Cart = () => {
                 ))}
             </ul>
             <p>Total Price: ${totalPrice.toFixed(2)}</p>
-            <button onClick={() => { handlePay(); resetCart(); }}>Pay Now</button>
+            <button onClick={handlePay}>Pay Now</button>
         </div>
     );
 };
 
 export default Cart;
-
-
-
-
