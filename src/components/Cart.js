@@ -1,11 +1,18 @@
+// Cart.js
 import React from 'react';
-import { useCart } from './CartContext'; // Import useCart
+import { useNavigate } from 'react-router-dom';
+import { useCart } from './CartContext';
 
 const Cart = () => {
-    const { cart } = useCart(); // Use the cart array from CartContext
+    const navigate = useNavigate();
+    const { cart } = useCart();
 
-    // Calculate the total price
     const totalPrice = cart.reduce((total, item) => total + item.price, 0);
+
+    const handlePay = () => {
+        // Navigate to the PayingPage
+        navigate('/PayingPage', { state: { cart, totalAmount: totalPrice.toFixed(2) } });
+    };
 
     return (
         <div>
@@ -18,8 +25,12 @@ const Cart = () => {
                 ))}
             </ul>
             <p>Total Price: ${totalPrice.toFixed(2)}</p>
+            <button onClick={handlePay}>Pay Now</button>
         </div>
     );
 };
 
 export default Cart;
+
+
+
