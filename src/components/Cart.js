@@ -5,7 +5,7 @@ import { useCart } from './CartContext';
 
 const Cart = () => {
     const navigate = useNavigate();
-    const { cart } = useCart();
+    const { cart, resetCart } = useCart(); // Assuming you have a resetCart function
 
     const totalPrice = cart.reduce((total, item) => total + item.price, 0);
 
@@ -25,12 +25,13 @@ const Cart = () => {
                 ))}
             </ul>
             <p>Total Price: ${totalPrice.toFixed(2)}</p>
-            <button onClick={handlePay}>Pay Now</button>
+            <button onClick={() => { handlePay(); resetCart(); }}>Pay Now</button>
         </div>
     );
 };
 
 export default Cart;
+
 
 
 
