@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import './ProductsPage.css';
-import { useCart } from './CartContext'; // Import useCart
+import { useCart } from './CartContext';
 
 const ProductsPage = () => {
     const [products, setProducts] = useState([]);
-    const [categories, setCategories] = useState([]); // Added setCategories
+    const [categories, setCategories] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [categoryFilter, setCategoryFilter] = useState('all');
@@ -13,6 +13,9 @@ const ProductsPage = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const { addToCart } = useCart();
+
+    const itemsPerPage = 5;
+    const [currentPage, setCurrentPage] = useState(1);
 
     const fetchData = useCallback(async () => {
         try {
@@ -64,6 +67,19 @@ const ProductsPage = () => {
         addToCart(product);
     };
 
+    const displayProducts = filteredProducts.slice(
+        (currentPage - 1) * itemsPerPage,
+        currentPage * itemsPerPage
+    );
+
+    const handleNextPage = () => {
+        setCurrentPage((prevPage) => prevPage + 1);
+    };
+
+    const handlePrevPage = () => {
+        setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+    };
+
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -76,7 +92,6 @@ const ProductsPage = () => {
         <div>
             <h2>Products Page</h2>
 
-            {/* Search Bar */}
             <input
                 type="text"
                 placeholder="Search products..."
@@ -84,7 +99,6 @@ const ProductsPage = () => {
                 onChange={(e) => setSearchTerm(e.target.value)}
             />
 
-            {/* Category Filter Buttons */}
             <div>
                 {categories.map((category) => (
                     <button
@@ -97,7 +111,6 @@ const ProductsPage = () => {
                 ))}
             </div>
 
-            {/* Sort Buttons */}
             <div>
                 <button
                     className={sortOption === 'expensive' ? 'active' : ''}
@@ -114,16 +127,26 @@ const ProductsPage = () => {
             </div>
 
             <div className="product-list">
-                {/* Display filtered products */}
-                {filteredProducts.map((product) => (
+                {displayProducts.map((product) => (
                     <div key={product.id} className="product-card">
                         <h3>{product.title}</h3>
                         <p>${product.price}</p>
                         <img src={product.image} alt={product.title} />
+
                         <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
+
                     </div>
-                ))}
+                ))}            <div className="button-container">
+                    <button onClick={handlePrevPage} disabled={currentPage === 1}>
+                        Previous
+                    </button>
+                    <button onClick={handleNextPage} disabled={currentPage * itemsPerPage >= filteredProducts.length}>
+                        Next
+                    </button>
+                </div>
             </div>
+
+
         </div>
     );
 };

@@ -2,6 +2,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from './CartContext';
+import './Cart.css'
 
 const Cart = () => {
     const navigate = useNavigate();

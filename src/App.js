@@ -8,12 +8,13 @@ import Layout from './components/Layout'
 import Footer from './components/Footer';
 import PayingPage from './components/PayingPage';
 import PaymentSuccess from './components/PaymentSuccess';
+import Header from './components/Header';
 
 const App = () => {
   return (
     <Router>
       <CartProvider>
-
+        <Header />
         <HamburgerMenu />
         <Routes>
           <Route path="/" element={<Layout />} />

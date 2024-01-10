@@ -1,3 +1,29 @@
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product-card {
+    width: 15%;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Center align items horizontally */
+}
+
 img {
     width: 100px;
+    margin-bottom: 10px;
+    /* Add some space between image and text */
+}
+
+.button-container {
+    display: flex;
+    height: 20px;
+    margin: 10px;
+    /* Align button to the left */
 }

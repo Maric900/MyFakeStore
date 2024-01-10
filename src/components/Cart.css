@@ -1,14 +1,19 @@
-h2 {
-    color: #333;
-    /* Set the color for the heading */
-}
-
-ul {
-    list-style: none;
-    /* Remove default list styles */
+body {
+    margin: 0;
     padding: 0;
+    background: linear-gradient(to bottom, #001428, Transparent);
+    /* Slightly Darker Blue to Transparent Gradient */
+    color: #ffffff;
+    /* Text color, in this case, white */
+    font-family: 'Arial', sans-serif;
+    /* Choose a suitable font */
+    height: 150vh;
+    /* Ensure the body takes up the full viewport height */
+    overflow: hidden;
+    /* Hide any potential overflow content */
 }
 
-li {
-    margin-bottom: 10px;
+.container {
+    width: 80%;
+    padding: 20px;
 }
