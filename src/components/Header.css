@@ -1,13 +1,11 @@
-/* Footer.css */
-
-.footer {
+.header {
     background-color: #333;
     color: #fff;
-    padding: 10px 10px 40px;
-    position: fixed;
+    padding: 20px 0;
+    position: relative;
     bottom: 0;
     width: 100%;
-    height: 20px;
+    height: 40px;
 }
 
 .container {
@@ -16,34 +14,34 @@
     align-items: center;
 }
 
-.footer-content {
+.header-content {
     display: flex;
     align-items: center;
 }
 
-.footer-logo img {
+.header-logo img {
     max-width: 100px;
     /* Adjust the logo size as needed */
 }
 
-.footer-links a {
+.header-links a {
     color: #fff;
     text-decoration: none;
     margin: 0 15px;
 }
 
-.footer-social a {
+.header-social a {
     color: #fff;
     text-decoration: none;
     margin-left: 10px;
     font-size: 20px;
 }
 
-.footer-social i {
+.header-social i {
     transition: color 0.3s ease-in-out;
 }
 
-.footer-social i:hover {
+.header-social i:hover {
     color: #55acee;
     /* Change the color to your preferred hover color */
 }
