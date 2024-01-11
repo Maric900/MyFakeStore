@@ -5,8 +5,8 @@
 
 .product-card {
     width: 15%;
-    margin: 10px;
-    padding: 10px;
+    margin: 7px;
+    padding: 7px;
     border: 1px solid #ddd;
     box-sizing: border-box;
     display: flex;
@@ -15,15 +15,90 @@
     /* Center align items horizontally */
 }
 
+.product-card h3 {
+    font-size: 14px;
+    /* Adjust the font size as needed */
+}
+
+
 img {
-    width: 100px;
-    margin-bottom: 10px;
+    width: 80px;
+    margin-bottom: 8px;
     /* Add some space between image and text */
 }
 
 .button-container {
     display: flex;
-    height: 20px;
+    height: 22px;
     margin: 10px;
-    /* Align button to the left */
+
+}
+
+/* Style for the search bar */
+input[type="text"] {
+    width: 300px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+/* Style for the category and sort buttons */
+button {
+    margin: 5px;
+    padding: 3px;
+    cursor: pointer;
+    border: 1px solid #007bff;
+    /* Change the color to match your theme */
+    border-radius: 5px;
+    background-color: #fff;
+    color: #007bff;
+    /* Change the color to match your theme */
+    outline: none;
+}
+
+/* Style for the active category and sort buttons */
+button.active {
+    background-color: #007bff;
+
+    color: #fff;
+}
+
+/* Style for the pagination buttons */
+.button-container button {
+    margin: 0 5px;
+}
+
+
+
+.button-container button {
+    background-color: #007bff;
+    /* Default button color, change as needed */
+    color: #fff;
+    /* Default text color, change as needed */
+    border: 1px solid #007bff;
+    /* Default border color, change as needed */
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+}
+
+.button-container button:disabled {
+    background-color: #ccc;
+    /* Disabled button color, change as needed */
+    color: #666;
+    /* Disabled text color, change as needed */
+    border: 1px solid #ccc;
+    /* Disabled border color, change as needed */
+    cursor: not-allowed;
+}
+
+.button-container button:hover:disabled {
+    background-color: #ccc;
+    /* Hover color for disabled button, change as needed */
+    color: #666;
+    /* Hover text color for disabled button, change as needed */
+    border: 1px solid #ccc;
+    /* Hover border color for disabled button, change as needed */
 }

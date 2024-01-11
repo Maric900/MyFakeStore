@@ -9,6 +9,8 @@ import Footer from './components/Footer';
 import PayingPage from './components/PayingPage';
 import PaymentSuccess from './components/PaymentSuccess';
 import Header from './components/Header';
+import ProductDetailsPage from './components/ProductDetailsPage'; // Import the new component
+
 
 const App = () => {
   return (
@@ -22,6 +24,7 @@ const App = () => {
           <Route path="/Cart" element={<Cart />} />
           <Route path="/PayingPage" element={<PayingPage />} />
           <Route path="/PaymentSuccess" element={<PaymentSuccess />} />
+          <Route path="/ProductDetailsPage/:id" element={<ProductDetailsPage />} />
         </Routes>
       </CartProvider>
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import './ProductsPage.css';
 import { useCart } from './CartContext';
 
@@ -65,6 +66,13 @@ const ProductsPage = () => {
 
     const handleAddToCart = (product) => {
         addToCart(product);
+    };
+
+    const handleShowDetails = (productId) => {
+        // You can navigate to the product details page using react-router-dom
+        // You might need to set up your routes and use BrowserRouter in your application
+        // This example uses the Link component to navigate to the product details page
+        console.log(`Show details for product with ID: ${productId}`);
     };
 
     const displayProducts = filteredProducts.slice(
@@ -135,8 +143,13 @@ const ProductsPage = () => {
 
                         <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
 
+                        {/* Add a "Show" button for each product */}
+                        <Link to={`/ProductDetailsPage/${product.id}`}>
+                            <button onClick={() => handleShowDetails(product.id)}>Show</button>
+                        </Link>
                     </div>
-                ))}            <div className="button-container">
+                ))}
+                <div className="button-container">
                     <button onClick={handlePrevPage} disabled={currentPage === 1}>
                         Previous
                     </button>
@@ -145,8 +158,6 @@ const ProductsPage = () => {
                     </button>
                 </div>
             </div>
-
-
         </div>
     );
 };

@@ -1,8 +1,7 @@
-// Cart.js
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from './CartContext';
-import './Cart.css'
+import './Cart.css';
 
 const Cart = () => {
     const navigate = useNavigate();
@@ -29,9 +28,14 @@ const Cart = () => {
                 ))}
             </ul>
             <p>Total Price: ${totalPrice.toFixed(2)}</p>
-            <button onClick={handlePay}>Pay Now</button>
+
+            {/* Conditionally render the "Pay Now" button */}
+            {totalPrice > 0 && (
+                <button onClick={handlePay}>Pay Now</button>
+            )}
         </div>
     );
 };
 
 export default Cart;
+
