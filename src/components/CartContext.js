@@ -22,14 +22,19 @@ export const CartProvider = ({ children }) => {
         const itemIndex = cart.findIndex((item) => item.id === itemId);
 
         if (itemIndex !== -1) {
+            console.log('Removing item:', itemId);
             // Create a copy of the cart
             const updatedCart = [...cart];
 
             // Remove one instance of the item
             updatedCart.splice(itemIndex, 1);
 
+            console.log('Updated Cart:', updatedCart);
+
             // Update the cart state
             setCart(updatedCart);
+        } else {
+            console.warn('Item not found in cart:', itemId);
         }
     };
 

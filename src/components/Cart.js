@@ -10,6 +10,15 @@ const Cart = () => {
 
     const totalPrice = cart.reduce((total, item) => total + item.price, 0);
 
+    const handleRemove = (itemId) => {
+        removeFromCart(itemId);
+    };
+
+    const handleRemoveAll = () => {
+        // Remove all items from the cart
+        resetCart();
+    };
+
     const handlePay = () => {
         // Navigate to the PayingPage
         navigate('/PayingPage', { state: { cart, totalAmount: totalPrice.toFixed(2) } });
@@ -17,6 +26,23 @@ const Cart = () => {
         // Reset the cart after payment
         resetCart();
     };
+
+    // Group items by product title and calculate total quantity for each product
+    const groupedCart = cart.reduce((grouped, item) => {
+        const existingItem = grouped.find((group) => group.title === item.title);
+
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            grouped.push({
+                title: item.title,
+                quantity: 1,
+                id: item.id, // Add the id field if available
+            });
+        }
+
+        return grouped;
+    }, []);
 
     return (
         <div className="cart-container">
@@ -28,17 +54,18 @@ const Cart = () => {
                     {totalPrice > 0 && (
                         <button onClick={handlePay}>Pay Now</button>
                     )}
+                    <button onClick={handleRemoveAll}>Remove All</button>
                 </div>
             </div>
             <ul>
-                {cart.map((item) => (
-                    <li key={item.id}>
+                {groupedCart.map((group) => (
+                    <li key={group.id}>
                         <div className="cart-item">
                             <div className="cart-item-details">
-                                <p>{item.title}</p>
-                                <p>${item.price}</p>
+                                <p>{group.title}</p>
+                                <p>Quantity: {group.quantity}</p>
                             </div>
-                            <button onClick={() => removeFromCart(item.id)}>Remove</button>
+                            <button onClick={() => handleRemove(group.id)}>Remove</button>
                         </div>
                     </li>
                 ))}
@@ -48,4 +75,3 @@ const Cart = () => {
 };
 
 export default Cart;
-
