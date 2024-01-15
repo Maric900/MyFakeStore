@@ -1,12 +1,15 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useCart } from './CartContext';
 
 const ProductDetailsPage = () => {
     const { id } = useParams();
+    const navigate = useNavigate(); // Use useNavigate hook for navigation
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const { addToCart } = useCart();
 
     const fetchProduct = useCallback(async () => {
         try {
@@ -23,6 +26,12 @@ const ProductDetailsPage = () => {
         fetchProduct();
     }, [fetchProduct]);
 
+    const handleAddToCart = () => {
+        addToCart(product);
+        // Navigate back to the products page after adding to the cart
+        navigate('/ProductsPage');
+    };
+
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -31,18 +40,18 @@ const ProductDetailsPage = () => {
         return <div>Error: {error}</div>;
     }
 
-
     if (!product) {
         return <div>Product not found</div>;
     }
 
     return (
-        <div>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '70vh' }}>
             <h2>Product Details</h2>
             <h3>{product.title}</h3>
             <p>${product.price}</p>
-            <img src={product.image} alt={product.title} />
-
+            <p>{product.category}</p>
+            <img src={product.image} alt={product.title} style={{ width: '180px', height: '230px' }} />
+            <button onClick={handleAddToCart}>Add to Cart</button>
         </div>
     );
 };
