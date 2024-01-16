@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { Link } from 'react-router-dom';
 import './ProductsPage.css';
 import { useCart } from './CartContext';
 
@@ -17,6 +17,7 @@ const ProductsPage = () => {
 
     const itemsPerPage = 5;
     const [currentPage, setCurrentPage] = useState(1);
+    const [showNotification, setShowNotification] = useState(false);
 
     const fetchData = useCallback(async () => {
         try {
@@ -56,7 +57,6 @@ const ProductsPage = () => {
             setFilteredProducts(filtered);
         }
 
-        // Sort products based on the selected option
         if (sortOption === 'expensive') {
             setFilteredProducts((prev) => [...prev].sort((a, b) => b.price - a.price));
         } else if (sortOption === 'cheapest') {
@@ -66,12 +66,13 @@ const ProductsPage = () => {
 
     const handleAddToCart = (product) => {
         addToCart(product);
+        setShowNotification(true);
+        setTimeout(() => {
+            setShowNotification(false);
+        }, 3000);
     };
 
     const handleShowDetails = (productId) => {
-        // You can navigate to the product details page using react-router-dom
-        // You might need to set up your routes and use BrowserRouter in your application
-        // This example uses the Link component to navigate to the product details page
         console.log(`Show details for product with ID: ${productId}`);
     };
 
@@ -99,6 +100,7 @@ const ProductsPage = () => {
     return (
         <div>
             <h2>Products Page</h2>
+            {showNotification && <div className="notification">Item added to cart!</div>}
 
             <input
                 type="text"
@@ -143,7 +145,7 @@ const ProductsPage = () => {
 
                         <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
 
-                        {/* Add a "Show" button for each product */}
+                        {/* Adds a "Show" button for each product */}
                         <Link to={`/ProductDetailsPage/${product.id}`}>
                             <button onClick={() => handleShowDetails(product.id)}>Show</button>
                         </Link>

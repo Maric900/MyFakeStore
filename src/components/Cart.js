@@ -1,4 +1,3 @@
-// Cart.js
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from './CartContext';
@@ -15,19 +14,16 @@ const Cart = () => {
     };
 
     const handleRemoveAll = () => {
-        // Remove all items from the cart
         resetCart();
     };
 
     const handlePay = () => {
-        // Navigate to the PayingPage
         navigate('/PayingPage', { state: { cart, totalAmount: totalPrice.toFixed(2) } });
 
         // Reset the cart after payment
         resetCart();
     };
 
-    // Group items by product title and calculate total quantity for each product
     const groupedCart = cart.reduce((grouped, item) => {
         const existingItem = grouped.find((group) => group.title === item.title);
 
@@ -37,7 +33,7 @@ const Cart = () => {
             grouped.push({
                 title: item.title,
                 quantity: 1,
-                id: item.id, // Add the id field if available
+                id: item.id,
             });
         }
 

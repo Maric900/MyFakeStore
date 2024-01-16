@@ -2,14 +2,14 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import ProductsPage from './components/ProductsPage';
 import Cart from './components/Cart';
-import HamburgerMenu from './HamburgerMenu';
-import { CartProvider } from './components/CartContext'; // Import CartProvider
+import HamburgerMenu from './components/HamburgerMenu';
+import { CartProvider } from './components/CartContext';
 import Layout from './components/Layout'
 import Footer from './components/Footer';
 import PayingPage from './components/PayingPage';
 import PaymentSuccess from './components/PaymentSuccess';
 import Header from './components/Header';
-import ProductDetailsPage from './components/ProductDetailsPage'; // Import the new component
+import ProductDetailsPage from './components/ProductDetailsPage';
 
 
 const App = () => {

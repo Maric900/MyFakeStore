@@ -1,15 +1,10 @@
-/* Cart.css */
 body {
     margin: 0;
     padding: 0;
     background: linear-gradient(to bottom, #001428, Transparent);
-    /* Slightly Darker Blue to Transparent Gradient */
     color: #ffffff;
-    /* Text color, in this case, white */
     font-family: 'Arial', sans-serif;
-    /* Choose a suitable font */
     height: 150vh;
-    /* Ensure the body takes up the full viewport height */
     overflow: hidden;
 }
 
@@ -22,9 +17,7 @@ body {
     max-width: 700px;
     margin: 70px auto;
     max-height: 400px;
-    /* Set a maximum height for the cart container */
     overflow-y: auto;
-    /* Add a vertical scrollbar when the content overflows */
     border: 1px solid #ccc;
     padding: 10px;
 }

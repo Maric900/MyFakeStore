@@ -1,9 +1,9 @@
-// PayingPage.js
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import PaymentSuccess from './PaymentSuccess'; // Import the PaymentSuccess component
+import PaymentSuccess from './PaymentSuccess';
+import './PayingPage.css';
 
 const PayingPage = () => {
     const location = useLocation();
@@ -39,28 +39,29 @@ const PayingPage = () => {
         return emailRegex.test(email);
     };
 
-    // Validation function for phone number format
     const isValidPhoneNumber = (phone) => {
         const phoneRegex = /^\d+$/;
         return phoneRegex.test(phone);
     };
 
-    // Validation function for card number format (dummy example)
     const isValidCardNumber = (cardNumber) => {
         const cardNumberRegex = /^\d{16}$/;
         return cardNumberRegex.test(cardNumber);
     };
 
-    // Validation function for security number format (dummy example)
     const isValidSecurityNumber = (securityNumber) => {
         const securityNumberRegex = /^\d{3}$/;
         return securityNumberRegex.test(securityNumber);
     };
 
-    // Validation function for expiry date format (dummy example)
     const isValidExpiryDate = (expiryDate) => {
-        // Customize this function based on the actual validation logic for expiry date
         return expiryDate !== null; // For now, it checks if the date is not null
+    };
+
+    // Validation function for checking if the expiry date is expired
+    const isExpiredDate = (expiryDate) => {
+        const currentDate = new Date();
+        return expiryDate < currentDate;
     };
 
     // Handle form input changes
@@ -125,6 +126,8 @@ const PayingPage = () => {
         // Example: Validate expiry date format
         if (!isValidExpiryDate(formData.expiryDate)) {
             newErrors.expiryDate = 'Invalid expiry date format';
+        } else if (isExpiredDate(formData.expiryDate)) {
+            newErrors.expiryDate = 'Card has expired';
         }
 
         // Update errors state with validation results
@@ -137,15 +140,13 @@ const PayingPage = () => {
 
             // Mark payment as submitted
             setPaymentSubmitted(true);
-
         }
     };
 
     return (
-        <div>
-            {/* Conditionally render either the form or the success message */}
+        <div id="paying-page">
             {!paymentSubmitted ? (
-                <div>
+                <div className="form-container">
                     <h2>Total Amount: ${totalAmount}</h2>
                     <form onSubmit={handleSubmit}>
                         {/* Name */}

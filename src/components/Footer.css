@@ -1,13 +1,12 @@
-/* Footer.css */
-
 .footer {
     background-color: #333;
     color: #fff;
-    padding: 10px 10px 40px;
+    padding: 10px 10px 30px;
     position: fixed;
     bottom: 0;
     width: 100%;
     height: 20px;
+
 }
 
 .container {
@@ -19,31 +18,14 @@
 .footer-content {
     display: flex;
     align-items: center;
+    margin: -20px;
 }
 
-.footer-logo img {
-    max-width: 100px;
-    /* Adjust the logo size as needed */
+.footer-social svg {
+    fill: #fff;
+    transition: fill 0.3s ease-in-out;
 }
 
-.footer-links a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 15px;
-}
-
-.footer-social a {
-    color: #fff;
-    text-decoration: none;
-    margin-left: 10px;
-    font-size: 20px;
-}
-
-.footer-social i {
-    transition: color 0.3s ease-in-out;
-}
-
-.footer-social i:hover {
-    color: #55acee;
-    /* Change the color to your preferred hover color */
+.footer-links {
+    margin: 0px 10px 0px;
 }

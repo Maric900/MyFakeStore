@@ -5,7 +5,7 @@ import { useCart } from './CartContext';
 
 const ProductDetailsPage = () => {
     const { id } = useParams();
-    const navigate = useNavigate(); // Use useNavigate hook for navigation
+    const navigate = useNavigate();
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -28,7 +28,6 @@ const ProductDetailsPage = () => {
 
     const handleAddToCart = () => {
         addToCart(product);
-        // Navigate back to the products page after adding to the cart
         navigate('/ProductsPage');
     };
 

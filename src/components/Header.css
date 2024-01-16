@@ -21,7 +21,6 @@
 
 .header-logo img {
     max-width: 100px;
-    /* Adjust the logo size as needed */
 }
 
 .header-links a {
@@ -43,5 +42,4 @@
 
 .header-social i:hover {
     color: #55acee;
-    /* Change the color to your preferred hover color */
 }
